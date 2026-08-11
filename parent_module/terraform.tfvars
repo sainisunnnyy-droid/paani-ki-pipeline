@@ -1,10 +1,6 @@
 rg = {
   rg1 = {
-    name     = "push-rg"
-    location = "west us"
-  }
-  rg2 = {
-    name     = "pull-rg"
+    name     = "push_pull-rg"
     location = "west us"
   }
 }
