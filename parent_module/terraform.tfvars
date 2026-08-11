@@ -2,7 +2,7 @@ rg = {
   rg1 = {
     name     = "push_pull-rg"
     location = "west us"
-}
+  }
 }
 
 vnet = {
