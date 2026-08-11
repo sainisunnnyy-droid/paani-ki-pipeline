@@ -30,8 +30,8 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-          
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+          creds: ${{ secrets.Azure_CRED }}
 
       # 3. Setup Terraform
       - name: Setup Terraform
