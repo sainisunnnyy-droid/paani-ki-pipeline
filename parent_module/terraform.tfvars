@@ -1,12 +1,8 @@
 rg = {
   rg1 = {
-    name     = "push-rg"
+    name     = "push_pull-rg"
     location = "west us"
-  }
-  rg2 = {
-    name     = "pull-rg"
-    location = "west us"
-  }
+}
 }
 
 vnet = {
