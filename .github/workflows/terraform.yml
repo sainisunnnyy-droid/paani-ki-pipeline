@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
+      - feature_pipeline
 
   pull_request:
     branches:
       - main
-      - feature_pipeline
 
 permissions:
   id-token: write
@@ -17,8 +17,7 @@ permissions:
 jobs:
 
   terraform:
-
-    name: Terraform
+    name: Terraform CI/CD
     runs-on: ubuntu-latest
 
     steps:
@@ -31,9 +30,8 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+          creds: ${{ secrets.Azure_CRED }}
 
       # 3. Setup Terraform
       - name: Setup Terraform
@@ -44,17 +42,29 @@ jobs:
         working-directory: ./parent_module
         run: terraform init
 
-      # 5. Terraform Validate
+      # 5. Security Scan
+      - name: Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 6. Terraform Format Check
+      - name: Terraform Format Check
+        working-directory: ./parent_module
+        run: terraform fmt -check -recursive
+
+      # 7. Terraform Validate
       - name: Terraform Validate
         working-directory: ./parent_module
         run: terraform validate
 
-      # 6. Terraform Plan
+      # 8. Terraform Plan
       - name: Terraform Plan
         working-directory: ./parent_module
         run: terraform plan
 
-      # 7. Terraform Apply
+      # 9. Terraform Apply
+      # Runs ONLY after merge/push to main
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         working-directory: ./parent_module
