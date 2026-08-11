@@ -3,3 +3,9 @@ resource "azurerm_resource_group" "rg_niki" {
   location   = "East US"
   managed_by = "Terraform"
 }
+
+resource "azurerm_resource_group" "rg_nik_12" {
+  name       = "rg_nikitafighter_25"
+  location   = "East US"
+  managed_by = "Terraform"
+}
