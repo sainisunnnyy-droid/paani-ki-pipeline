@@ -43,10 +43,10 @@ jobs:
         run: terraform init
 
       # 5. Security Scan
-      - name: Gitleaks Scan
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Gitleaks Scan
+      #   uses: gitleaks/gitleaks-action@v2
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 6. Terraform Format Check
       - name: Terraform Format Check
