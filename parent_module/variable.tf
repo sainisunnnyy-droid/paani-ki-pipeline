@@ -1,10 +1,10 @@
 variable "rg" {}
 variable "vnet" {}
-variable "snet" {}
-variable "pip" {}
-variable "natgw" {}
-variable "nic" {}
-variable "vm" {}
-variable "bastion" {}
-variable "appgw" {}
-variable "key_vault" {}
+# variable "snet" {}
+# variable "pip" {}
+# variable "natgw" {}
+# variable "nic" {}
+# variable "vm" {}
+# variable "bastion" {}
+# variable "appgw" {}
+# variable "key_vault" {}
